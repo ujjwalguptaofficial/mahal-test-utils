@@ -13,15 +13,14 @@ interface ComponentInitiateOption {
 
 export default class {
     setup(Taj: typeof TajModule) {
-        (Taj as any).prototype.$initiate = (component, taj?: TajModule) => {
-            if (taj) {
-                taj.component = component;
-                taj.element = document.querySelector('#app');
+        (Taj.App.prototype as any).$initiate = (component, app?) => {
+            if (app) {
+                app.component = component;
             }
             else {
-                taj = new Taj(component, "#app");
+                app = new Taj.App(component, "#app");
             }
-            return taj.create();
+            return app.create();
         }
 
         Object.defineProperty(Taj.Component.prototype, "$html", {

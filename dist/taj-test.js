@@ -106,15 +106,14 @@ var default_1 = /** @class */ (function () {
     function default_1() {
     }
     default_1.prototype.setup = function (Taj) {
-        Taj.prototype.$initiate = function (component, taj) {
-            if (taj) {
-                taj.component = component;
-                taj.element = document.querySelector('#app');
+        Taj.App.prototype.$initiate = function (component, app) {
+            if (app) {
+                app.component = component;
             }
             else {
-                taj = new Taj(component, "#app");
+                app = new Taj.App(component, "#app");
             }
-            return taj.create();
+            return app.create();
         };
         Object.defineProperty(Taj.Component.prototype, "$html", {
             get: function () {
