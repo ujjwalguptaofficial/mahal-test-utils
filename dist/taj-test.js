@@ -1,5 +1,5 @@
 /*!
- * @license :taj-test - V1.0.0 - 02/09/2020
+ * @license :taj-test - V1.0.0 - 06/09/2020
  * https://github.com/ujjwalguptaofficial/taj
  * Copyright (c) 2020 @Ujjwal Gupta; Licensed ISC
  */
@@ -92,131 +92,25 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/decorators/action.ts":
-/*!**********************************!*\
-  !*** ./src/decorators/action.ts ***!
-  \**********************************/
-/*! exports provided: Action */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Action", function() { return Action; });
-// tslint:disable-next-line
-function Action(name) {
-    return function (target, key) {
-        target[key] = function (payload) {
-            target.$store.execute(name, payload);
-        };
-    };
-}
-;
-
-
-/***/ }),
-
-/***/ "./src/decorators/getter.ts":
-/*!**********************************!*\
-  !*** ./src/decorators/getter.ts ***!
-  \**********************************/
-/*! exports provided: Getter */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Getter", function() { return Getter; });
-function Getter(name) {
-    return function (target, key) {
-        if (!target._$storeGetters) {
-            target._$storeGetters = [];
-        }
-        target._$storeGetters.push({
-            prop: key,
-            state: name
-        });
-    };
-}
-
-
-/***/ }),
-
-/***/ "./src/decorators/index.ts":
-/*!*********************************!*\
-  !*** ./src/decorators/index.ts ***!
-  \*********************************/
-/*! exports provided: Getter, Mutation, Action */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _getter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getter */ "./src/decorators/getter.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Getter", function() { return _getter__WEBPACK_IMPORTED_MODULE_0__["Getter"]; });
-
-/* harmony import */ var _mutation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutation */ "./src/decorators/mutation.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Mutation", function() { return _mutation__WEBPACK_IMPORTED_MODULE_1__["Mutation"]; });
-
-/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action */ "./src/decorators/action.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Action", function() { return _action__WEBPACK_IMPORTED_MODULE_2__["Action"]; });
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./src/decorators/mutation.ts":
-/*!************************************!*\
-  !*** ./src/decorators/mutation.ts ***!
-  \************************************/
-/*! exports provided: Mutation */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Mutation", function() { return Mutation; });
-// tslint:disable-next-line
-function Mutation(name) {
-    return function (target, key) {
-        target[key] = function (payload) {
-            target.$store.commit(name, payload);
-        };
-    };
-}
-;
-
-
-/***/ }),
-
 /***/ "./src/index.ts":
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Getter, Mutation, Action, default */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _interfaces__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./interfaces */ "./src/interfaces/index.ts");
-/* empty/unused harmony star reexport *//* harmony import */ var _decorators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./decorators */ "./src/decorators/index.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Getter", function() { return _decorators__WEBPACK_IMPORTED_MODULE_1__["Getter"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Mutation", function() { return _decorators__WEBPACK_IMPORTED_MODULE_1__["Mutation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Action", function() { return _decorators__WEBPACK_IMPORTED_MODULE_1__["Action"]; });
-
-/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsdom */ "jsdom");
-/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsdom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jsdom */ "jsdom");
+/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jsdom__WEBPACK_IMPORTED_MODULE_0__);
 // export * from "./plugin";
-
-
 
 var default_1 = /** @class */ (function () {
     function default_1() {
     }
     default_1.prototype.setup = function (Taj) {
         Taj.Component.prototype.$initiate = function (option, cb) {
-            var dom = new jsdom__WEBPACK_IMPORTED_MODULE_2__["JSDOM"]("");
+            var dom = new jsdom__WEBPACK_IMPORTED_MODULE_0__["JSDOM"]("");
             global.window = dom.window;
             global.document = dom.window.document;
             if (cb) {
@@ -237,35 +131,6 @@ var default_1 = /** @class */ (function () {
     return default_1;
 }());
 /* harmony default export */ __webpack_exports__["default"] = (default_1);
-
-
-/***/ }),
-
-/***/ "./src/interfaces/index.ts":
-/*!*********************************!*\
-  !*** ./src/interfaces/index.ts ***!
-  \*********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./src/interfaces/store.ts");
-/* empty/unused harmony star reexport */
-
-
-/***/ }),
-
-/***/ "./src/interfaces/store.ts":
-/*!*********************************!*\
-  !*** ./src/interfaces/store.ts ***!
-  \*********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
 
 
 /***/ }),

@@ -11,6 +11,7 @@
   "dependencies": {
     "jquery": "^3.4.0",
     "jsstore": "^3.6.1",
+    "mochapack": "^2.0.3",
     "taj": "file:../../../taj/taj-1.0.0.tgz"
   },
   "devDependencies": {

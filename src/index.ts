@@ -1,6 +1,4 @@
 // export * from "./plugin";
-export * from "./interfaces";
-export * from "./decorators";
 
 import { JSDOM } from "jsdom";
 
