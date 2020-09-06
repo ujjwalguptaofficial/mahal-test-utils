@@ -101,48 +101,45 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jsdom */ "jsdom");
-/* harmony import */ var jsdom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jsdom__WEBPACK_IMPORTED_MODULE_0__);
 // export * from "./plugin";
-
 var default_1 = /** @class */ (function () {
     function default_1() {
     }
     default_1.prototype.setup = function (Taj) {
-        Taj.Component.prototype.$initiate = function (option, cb) {
-            var dom = new jsdom__WEBPACK_IMPORTED_MODULE_0__["JSDOM"]("");
-            global.window = dom.window;
-            global.document = dom.window.document;
-            if (cb) {
-                cb();
+        Taj.prototype.$initiate = function (component, taj) {
+            if (taj) {
+                taj.component = component;
+                taj.element = document.querySelector('#app');
             }
+            else {
+                taj = new Taj(component, "#app");
+            }
+            return taj.create();
         };
-        Object.defineProperty(Taj.Component, "$html", {
+        Object.defineProperty(Taj.Component.prototype, "$html", {
             get: function () {
-                return this._$element.innerHTML;
+                return this.element.innerHTML;
             }
         });
-        Object.defineProperty(Taj.Component, "$text", {
+        Object.defineProperty(Taj.Component.prototype, "$text", {
             get: function () {
-                return this._$element.innerText;
+                return this.element.innerText;
             }
         });
+        Taj.Component.prototype.click = function () {
+            this.element.click();
+        };
+        // Object.defineProperty(Component.prototype, "$text", {
+        //     get: function () {
+        //         console.log("text hitted");
+        //         return this.element.innerText
+        //     }
+        // });
     };
     return default_1;
 }());
 /* harmony default export */ __webpack_exports__["default"] = (default_1);
 
-
-/***/ }),
-
-/***/ "jsdom":
-/*!************************!*\
-  !*** external "jsdom" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("jsdom");
 
 /***/ })
 

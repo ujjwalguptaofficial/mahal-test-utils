@@ -2,7 +2,7 @@
   "name": "taj-test",
   "version": "1.0.0",
   "description": "",
-  "main": "build/taj-store.commonjs2.js",
+  "main": "dist/taj-test.js",
   "types": "dist/ts/index.d.ts",
   "directories": {
     "test": "tests"

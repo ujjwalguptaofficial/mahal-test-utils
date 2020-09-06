@@ -1,4 +1,4 @@
-import { Component, Template, Prop, Taj, Filter, Reactive } from "taj";
+import { Component, Template, Reactive } from "taj";
 import { IStore, Getter, Mutation } from "taj-store";
 
 class BaseComponent extends Component {
@@ -43,7 +43,7 @@ export default class extends BaseComponent {
         this.students.push({
             name: 'ujjwal1'
         })
-        this.students.splice(1,1,{name:'ujjwalsss'});
+        this.students.splice(1, 1, { name: 'ujjwalsss' });
         console.log("students", this.students)
     }
 

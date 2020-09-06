@@ -1,3 +1,4 @@
+import TajModule from "taj";
 export default class {
-    setup(Taj: any): void;
+    setup(Taj: typeof TajModule): void;
 }

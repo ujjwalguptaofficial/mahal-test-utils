@@ -1,6 +1,10 @@
 import { Component, Template } from "taj";
 
-@Template("<div>{{name}}</div>")
-export default class extends Component {
+@Template("<div on:click='say'>{{name}}</div>")
+export default class HelloWorld extends Component {
     name = "ujjwal gupta";
+
+    say() {
+        window.alert("Hello World");
+    }
 }
