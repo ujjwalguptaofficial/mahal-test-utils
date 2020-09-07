@@ -1,10 +1,20 @@
-import { Component, Template } from "taj";
+import { Component, Template, Reactive } from "taj";
 
-@Template("<div on:click='say'>{{name}}</div>")
+@Template(`<div>
+    <div id="counter">{{counter}}</div>
+    <button id="btnIncrement" on:click='increment'>Increment</button>
+    <button id="btnDecrement" on:click='decrement'>Decrement</button>
+</div>`)
 export default class extends Component {
-    name = "ujjwal gupta";
+    @Reactive
+    counter = 0;
 
-    say() {
-        window.alert("Hello World");
+    increment() {
+        console.log("triggered increment");
+        ++this.counter;
+    }
+
+    decrement() {
+        --this.counter;
     }
 }

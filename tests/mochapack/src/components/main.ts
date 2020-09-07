@@ -1,10 +1,11 @@
 import { Children, Template, Reactive, Component } from "taj";
 import { Getter } from "taj-store";
 import Student from "./student";
+import Counter from "./counter";
 
-@Template(`<div><button on:click="onClick">top {{name}}</button><Student #if(flag)/></div>`)
+@Template(`<Counter></Counter>`)
 @Children({
-    Student
+    Counter
 })
 export default class Main extends Component {
 
