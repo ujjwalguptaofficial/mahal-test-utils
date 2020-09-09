@@ -1,50 +1,45 @@
-// export * from "./plugin";
-
-import { JSDOM } from "jsdom";
 import TajModule from "taj";
-import { Component } from "taj";
-
+import { Plugin, App, Component, Reactive } from "taj";
 interface ComponentInitiateOption {
     props: {
 
     }
 }
+export default class implements Plugin {
+    setup(Taj: typeof TajModule, app: App) {
 
-
-export default class {
-    setup(Taj: typeof TajModule) {
-        (Taj.App.prototype as any).$initiate = (component, app?) => {
+        (Taj.App.prototype as any).$initiate = (component, option: ComponentInitiateOption) => {
             if (app) {
                 app.component = component;
             }
             else {
                 app = new Taj.App(component, "#app");
             }
-            return app.create();
+            const componentInstance: Component = new component();
+            if (option) {
+                const componentInitOption = {};
+                if (option.props) {
+                    componentInitOption["attr"] = {};
+                    for (const key in option.props) {
+                        Reactive(componentInstance, key);
+                        componentInitOption["attr"][key] = {
+                            k: key,
+                            v: option.props[key]
+                        }
+                    }
+                }
+                (componentInstance as any).initComponent_(componentInstance, componentInitOption);
+            }
+            app.element.appendChild(
+                (componentInstance as any).executeRender_()
+            );
+            return componentInstance;
         }
-
-        Object.defineProperty(Taj.Component.prototype, "$html", {
-            get: function () {
-                return this.element.innerHTML
-            }
-        });
-
-
-        Object.defineProperty(Taj.Component.prototype, "$text", {
-            get: function () {
-                return this.element.innerText
-            }
-        });
 
         (Taj.Component.prototype as any).click = function () {
             this.element.click();
         }
 
-        // Object.defineProperty(Component.prototype, "$text", {
-        //     get: function () {
-        //         console.log("text hitted");
-        //         return this.element.innerText
-        //     }
-        // });
+
     }
 }
