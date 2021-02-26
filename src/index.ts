@@ -1,5 +1,5 @@
-import TajModule from "taj";
-import { Plugin, App, Component, Reactive } from "taj";
+import TajModule from "mahal";
+import { Plugin, App, Component, Reactive } from "mahal";
 interface ComponentInitiateOption {
     props: {
 
@@ -21,7 +21,7 @@ export default class implements Plugin {
                 if (option.props) {
                     componentInitOption["attr"] = {};
                     for (const key in option.props) {
-                        Reactive(componentInstance, key);
+                        // Reactive(componentInstance, key);
                         componentInitOption["attr"][key] = {
                             k: key,
                             v: option.props[key]

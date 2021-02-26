@@ -8,9 +8,9 @@ const packageInfo = JSON.parse(content);
 if (packageInfo) {
     const version = packageInfo.version;
     console.log('version', version);
-    execSync(`npm i ../../../taj/taj-1.0.0.tgz`);
+    execSync(`npm i ../../../mahal/mahal-0.1.0.tgz`);
     // execSync(`npm i ../../../taj-store/taj-store-1.0.0.tgz`);
-    execSync(`npm i ../../taj-test-${version}.tgz --no-save`);
+    execSync(`npm i ../../mahal-test-utils-${version}.tgz --no-save`);
 }
 else {
     throw "no package found";

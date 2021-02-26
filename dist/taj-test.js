@@ -1,7 +1,7 @@
 /*!
- * @license :taj-test - V1.0.0 - 06/09/2020
+ * @license :mahal-test-utils - V0.1.0 - 25/02/2021
  * https://github.com/ujjwalguptaofficial/taj
- * Copyright (c) 2020 @Ujjwal Gupta; Licensed ISC
+ * Copyright (c) 2021 @Ujjwal Gupta; Licensed ISC
  */
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
@@ -101,39 +101,53 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// export * from "./plugin";
 var default_1 = /** @class */ (function () {
     function default_1() {
     }
-    default_1.prototype.setup = function (Taj) {
-        Taj.App.prototype.$initiate = function (component, app) {
+    default_1.prototype.setup = function (Taj, app) {
+        Taj.App.prototype.initiate = function (component, option) {
             if (app) {
                 app.component = component;
             }
             else {
                 app = new Taj.App(component, "#app");
             }
-            return app.create();
+            var componentInstance = new component();
+            if (option) {
+                var componentInitOption = {};
+                if (option.props) {
+                    componentInitOption["attr"] = {};
+                    for (var key in option.props) {
+                        // Reactive(componentInstance, key);
+                        componentInitOption["attr"][key] = {
+                            k: key,
+                            v: option.props[key]
+                        };
+                    }
+                }
+                componentInstance.initComponent_(componentInstance, componentInitOption);
+            }
+            // (componentInstance.element as any).setValue = function (value) {
+            //     this.value = value;
+            //     this.dispatchEvent(new Event("input"))
+            // }.bind(componentInstance.element);
+            app.element.appendChild(componentInstance.executeRender_());
+            componentInstance.find = function (qry) {
+                var el = componentInstance.element.querySelector(qry);
+                if (el == null) {
+                    return el;
+                }
+                el.setValue = function (value) {
+                    this.value = value;
+                    this.dispatchEvent(new window.Event("input"));
+                };
+                return el;
+            };
+            return componentInstance;
         };
-        Object.defineProperty(Taj.Component.prototype, "$html", {
-            get: function () {
-                return this.element.innerHTML;
-            }
-        });
-        Object.defineProperty(Taj.Component.prototype, "$text", {
-            get: function () {
-                return this.element.innerText;
-            }
-        });
         Taj.Component.prototype.click = function () {
             this.element.click();
         };
-        // Object.defineProperty(Component.prototype, "$text", {
-        //     get: function () {
-        //         console.log("text hitted");
-        //         return this.element.innerText
-        //     }
-        // });
     };
     return default_1;
 }());

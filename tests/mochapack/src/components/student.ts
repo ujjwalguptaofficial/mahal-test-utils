@@ -1,4 +1,4 @@
-import { Component, Template, Reactive } from "taj";
+import { Component, Template, Reactive } from "mahal";
 import { IStore, Getter, Mutation } from "taj-store";
 
 class BaseComponent extends Component {
@@ -23,7 +23,7 @@ export default class extends BaseComponent {
 
     constructor() {
         super();
-        this.onRendered(() => {
+        this.on("rendered", () => {
             console.log("store", this.$store);
         })
     }

@@ -1,4 +1,4 @@
-import { Children, Template, Reactive, Component } from "taj";
+import { Children, Template, Reactive, Component } from "mahal";
 import { Getter } from "taj-store";
 import Student from "./student";
 import Counter from "./counter";

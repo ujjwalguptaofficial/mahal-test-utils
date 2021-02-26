@@ -1,4 +1,5 @@
-import TajModule from "taj";
-export default class {
-    setup(Taj: typeof TajModule): void;
+import TajModule from "mahal";
+import { Plugin, App } from "mahal";
+export default class implements Plugin {
+    setup(Taj: typeof TajModule, app: App): void;
 }

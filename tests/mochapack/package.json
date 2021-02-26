@@ -12,10 +12,9 @@
   "dependencies": {
     "jquery": "^3.4.0",
     "jsstore": "^3.6.1",
+    "mahal": "file:../../../mahal/mahal-0.1.0.tgz",
     "mochapack": "^2.0.3",
-    "sinon": "^9.0.3",
-    "taj": "file:../../../taj/taj-1.0.0.tgz",
-    "taj-store": "file:../../../taj-store/taj-store-1.0.0.tgz"
+    "sinon": "^9.0.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

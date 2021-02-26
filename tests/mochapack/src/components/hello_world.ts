@@ -1,4 +1,4 @@
-import { Component, Template } from "taj";
+import { Component, Template } from "mahal";
 
 @Template("<div on:click='say'>{{name}}</div>")
 export default class HelloWorld extends Component {
