@@ -16,8 +16,8 @@ export default class implements Plugin {
                 app = new Taj.App(component, "#app");
             }
             const componentInstance: Component = new component();
+            const componentInitOption = {};
             if (option) {
-                const componentInitOption = {};
                 if (option.props) {
                     componentInitOption["attr"] = {};
                     for (const key in option.props) {
@@ -28,8 +28,9 @@ export default class implements Plugin {
                         }
                     }
                 }
-                (componentInstance as any).initComponent_(componentInstance, componentInitOption);
             }
+            (componentInstance as any).initComponent_(componentInstance, componentInitOption);
+            
             // (componentInstance.element as any).setValue = function (value) {
             //     this.value = value;
             //     this.dispatchEvent(new Event("input"))
@@ -52,8 +53,10 @@ export default class implements Plugin {
             return componentInstance;
         }
 
-        (Taj.Component.prototype as any).click = function () {
-            this.element.click();
+        return {
+            click: function () {
+                this.element.click();
+            }
         }
     }
 }

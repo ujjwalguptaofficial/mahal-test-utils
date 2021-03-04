@@ -1,5 +1,5 @@
 /*!
- * @license :mahal-test-utils - V0.1.0 - 25/02/2021
+ * @license :mahal-test-utils - V0.1.0 - 04/03/2021
  * https://github.com/ujjwalguptaofficial/taj
  * Copyright (c) 2021 @Ujjwal Gupta; Licensed ISC
  */
@@ -113,8 +113,8 @@ var default_1 = /** @class */ (function () {
                 app = new Taj.App(component, "#app");
             }
             var componentInstance = new component();
+            var componentInitOption = {};
             if (option) {
-                var componentInitOption = {};
                 if (option.props) {
                     componentInitOption["attr"] = {};
                     for (var key in option.props) {
@@ -125,8 +125,8 @@ var default_1 = /** @class */ (function () {
                         };
                     }
                 }
-                componentInstance.initComponent_(componentInstance, componentInitOption);
             }
+            componentInstance.initComponent_(componentInstance, componentInitOption);
             // (componentInstance.element as any).setValue = function (value) {
             //     this.value = value;
             //     this.dispatchEvent(new Event("input"))
@@ -145,8 +145,10 @@ var default_1 = /** @class */ (function () {
             };
             return componentInstance;
         };
-        Taj.Component.prototype.click = function () {
-            this.element.click();
+        return {
+            click: function () {
+                this.element.click();
+            }
         };
     };
     return default_1;
