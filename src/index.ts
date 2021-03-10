@@ -8,7 +8,7 @@ interface ComponentInitiateOption {
 export default class implements Plugin {
     setup(Taj: typeof TajModule, app: App) {
 
-        (Taj.App.prototype as any).initiate = (component, option: ComponentInitiateOption) => {
+        (Taj.App.prototype as any).initiate = async (component, option: ComponentInitiateOption) => {
             if (app) {
                 app.component = component;
             }
@@ -30,15 +30,13 @@ export default class implements Plugin {
                 }
             }
             (componentInstance as any).initComponent_(componentInstance, componentInitOption);
-            
+
             // (componentInstance.element as any).setValue = function (value) {
             //     this.value = value;
             //     this.dispatchEvent(new Event("input"))
             // }.bind(componentInstance.element);
-
-            app.element.appendChild(
-                (componentInstance as any).executeRender_()
-            );
+            const el = await (componentInstance as any).executeRender_();
+            app.element.appendChild(el);
             componentInstance.find = function (qry) {
                 const el = componentInstance.element.querySelector(qry);
                 if (el == null) {
