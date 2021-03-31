@@ -1,5 +1,5 @@
 /*!
- * @license :mahal-test-utils - V0.1.0 - 28/03/2021
+ * @license :mahal-test-utils - V0.1.0 - 29/03/2021
  * https://github.com/ujjwalguptaofficial/taj
  * Copyright (c) 2021 @Ujjwal Gupta; Licensed ISC
  */
@@ -144,52 +144,53 @@ var default_1 = /** @class */ (function () {
     function default_1() {
     }
     default_1.prototype.setup = function (Taj, app) {
-        var _this = this;
-        Taj.App.prototype['initiate'] = function (component, option) { return __awaiter(_this, void 0, void 0, function () {
-            var componentInstance, componentInitOption, key, el;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (app) {
-                            app.component = component;
-                        }
-                        else {
-                            app = new Taj.App(component, "#app");
-                        }
-                        componentInstance = new component();
-                        componentInitOption = {};
-                        if (option) {
-                            if (option.props) {
-                                componentInitOption["attr"] = {};
-                                for (key in option.props) {
-                                    // Reactive(componentInstance, key);
-                                    componentInitOption["attr"][key] = {
-                                        k: key,
-                                        v: option.props[key]
-                                    };
-                                }
-                            }
-                        }
-                        mahal__WEBPACK_IMPORTED_MODULE_0__["initComponent"].call(componentInstance, componentInstance, componentInitOption);
-                        return [4 /*yield*/, mahal__WEBPACK_IMPORTED_MODULE_0__["executeRender"].call(componentInstance)];
-                    case 1:
-                        el = _a.sent();
-                        app.element.appendChild(el);
-                        componentInstance.find = function (qry) {
-                            var el = componentInstance.element.querySelector(qry);
-                            if (el == null) {
-                                return el;
-                            }
-                            el.setValue = function (value) {
-                                this.value = value;
-                                this.dispatchEvent(new window.Event("input"));
-                            };
-                            return el;
+        Taj.App.prototype['initiate'] = function (component, option) {
+            if (app) {
+                app.component = component;
+            }
+            else {
+                app = new Taj.App(component, "#app");
+            }
+            var componentInstance = new component();
+            var componentInitOption = {};
+            if (option) {
+                if (option.props) {
+                    componentInitOption["attr"] = {};
+                    for (var key in option.props) {
+                        // Reactive(componentInstance, key);
+                        componentInitOption["attr"][key] = {
+                            k: key,
+                            v: option.props[key]
                         };
-                        return [2 /*return*/, componentInstance];
+                    }
                 }
+            }
+            mahal__WEBPACK_IMPORTED_MODULE_0__["initComponent"].call(componentInstance, componentInstance, componentInitOption);
+            // (componentInstance.element as any).setValue = function (value) {
+            //     this.value = value;
+            //     this.dispatchEvent(new Event("input"))
+            // }.bind(componentInstance.element);
+            return new Promise(function (res, rej) {
+                Object(mahal__WEBPACK_IMPORTED_MODULE_0__["executeRender"])(componentInstance).then(function (el) {
+                    app.element.appendChild(el);
+                    componentInstance.find = function (qry) {
+                        var el = componentInstance.element.querySelector(qry);
+                        if (el == null) {
+                            return el;
+                        }
+                        el.setValue = function (value) {
+                            this.value = value;
+                            this.dispatchEvent(new window.Event("input"));
+                        };
+                        return el;
+                    };
+                    res(componentInstance);
+                }).catch(function (err) {
+                    console.error("error caught at test", err);
+                    rej(err);
+                });
             });
-        }); };
+        };
         Taj.App.prototype['mount'] = function (component, option) {
             return __awaiter(this, void 0, void 0, function () {
                 var componentInstance;

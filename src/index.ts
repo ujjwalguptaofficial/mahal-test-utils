@@ -8,7 +8,7 @@ interface ComponentInitiateOption {
 export default class implements Plugin {
     setup(Taj: typeof TajModule, app: App) {
 
-        Taj.App.prototype['initiate'] = async (component, option: ComponentInitiateOption) => {
+        Taj.App.prototype['initiate'] = (component, option: ComponentInitiateOption) => {
             if (app) {
                 app.component = component;
             }
@@ -35,23 +35,29 @@ export default class implements Plugin {
             //     this.value = value;
             //     this.dispatchEvent(new Event("input"))
             // }.bind(componentInstance.element);
-            const el = await executeRender.call(componentInstance);
-            app.element.appendChild(
-                el
-            );
+            return new Promise((res, rej) => {
+                executeRender(componentInstance).then(el => {
+                    app.element.appendChild(
+                        el
+                    );
 
-            componentInstance.find = function (qry) {
-                const el = componentInstance.element.querySelector(qry);
-                if (el == null) {
-                    return el;
-                }
-                (el as any).setValue = function (value) {
-                    this.value = value;
-                    this.dispatchEvent(new window.Event("input"))
-                }
-                return el;
-            }
-            return componentInstance;
+                    componentInstance.find = function (qry) {
+                        const el = componentInstance.element.querySelector(qry);
+                        if (el == null) {
+                            return el;
+                        }
+                        (el as any).setValue = function (value) {
+                            this.value = value;
+                            this.dispatchEvent(new window.Event("input"))
+                        }
+                        return el;
+                    }
+                    res(componentInstance);
+                }).catch((err) => {
+                    console.error("error caught at test", err);
+                    rej(err);
+                });
+            })
         }
 
         Taj.App.prototype['mount'] = async function (component, option: ComponentInitiateOption) {
