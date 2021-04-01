@@ -35,7 +35,7 @@ export default class implements Plugin {
             //     this.value = value;
             //     this.dispatchEvent(new Event("input"))
             // }.bind(componentInstance.element);
-            const el = await executeRender.call(componentInstance);
+            const el = await executeRender(componentInstance);
             app.element.appendChild(
                 el
             );
