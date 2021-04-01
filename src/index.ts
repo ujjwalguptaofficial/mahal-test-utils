@@ -62,6 +62,9 @@ export default class implements Plugin {
         return {
             click: function () {
                 this.element.click();
+            },
+            async updated() {
+                await this.waitFor("update");
             }
         }
     }
