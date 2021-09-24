@@ -8,7 +8,7 @@ interface ComponentInitiateOption {
 export default class implements Plugin {
     setup(Taj: typeof TajModule, app: App) {
 
-        Taj.App.prototype['initiate'] = async (component, option: ComponentInitiateOption) => {
+        Taj.App.prototype['initiate'] = async (component, option: ComponentInitiateOption, onComponentCreated?: Function) => {
             if (app) {
                 app.component = component;
             }
@@ -16,6 +16,9 @@ export default class implements Plugin {
                 app = new Taj.App(component, "#app");
             }
             const componentInstance: Component = new component();
+            if (onComponentCreated) {
+                onComponentCreated(componentInstance);
+            }
             const componentInitOption = {};
             if (option) {
                 if (option.props) {
@@ -39,9 +42,9 @@ export default class implements Plugin {
             app.element.appendChild(
                 el
             );
-
+            const find = componentInstance.find.bind(componentInstance);
             componentInstance.find = function (qry) {
-                const el = componentInstance.element.querySelector(qry);
+                const el = find(qry);
                 if (el == null) {
                     return el;
                 }
@@ -55,9 +58,13 @@ export default class implements Plugin {
         }
 
         Taj.App.prototype['mount'] = async function (component, option: ComponentInitiateOption) {
-            const componentInstance: Component = await this.initiate(component, option);
-            await componentInstance.waitFor("mount");
-            return componentInstance;
+            return new Promise((res) => {
+                this.initiate(component, option, (componentInstance: Component) => {
+                    componentInstance.waitFor("mount").then(_ => {
+                        res(componentInstance)
+                    })
+                })
+            });
         }
         return {
             click: function () {

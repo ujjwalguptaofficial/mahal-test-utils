@@ -1,6 +1,6 @@
 {
   "name": "mahal-test-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/taj-test.js",
   "types": "dist/ts/index.d.ts",
