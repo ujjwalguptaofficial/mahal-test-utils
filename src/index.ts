@@ -1,21 +1,16 @@
-import TajModule from "mahal";
 import { Plugin, App, Component, initComponent, executeRender } from "mahal";
 interface ComponentInitiateOption {
     props: {
 
     }
 }
-export default class implements Plugin {
-    setup(Taj: typeof TajModule, app: App) {
+export default class extends Plugin {
+    setup(app: App) {
 
-        Taj.App.prototype['initiate'] = async (component, option: ComponentInitiateOption, onComponentCreated?: Function) => {
-            if (app) {
-                app.component = component;
-            }
-            else {
-                app = new Taj.App(component, "#app");
-            }
+        (app as any)['initiate'] = async (component, option: ComponentInitiateOption, onComponentCreated?: Function) => {
+            app.component = component;
             const componentInstance: Component = new component();
+            componentInstance['_app'] = app;
             if (onComponentCreated) {
                 onComponentCreated(componentInstance);
             }
@@ -57,7 +52,7 @@ export default class implements Plugin {
             return componentInstance;
         }
 
-        Taj.App.prototype['mount'] = async function (component, option: ComponentInitiateOption) {
+        (app as any)['mount'] = async function (component, option: ComponentInitiateOption) {
             return new Promise((res) => {
                 this.initiate(component, option, (componentInstance: Component) => {
                     componentInstance.waitFor("mount").then(_ => {
