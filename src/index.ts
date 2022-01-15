@@ -1,16 +1,15 @@
-import { Plugin, App, Component, initComponent, executeRender } from "mahal";
+import { Plugin, Mahal, Component, initComponent, createComponent, executeRender } from "mahal";
 interface ComponentInitiateOption {
     props: {
 
     }
 }
 export default class extends Plugin {
-    setup(app: App) {
+    setup(app: Mahal) {
 
         (app as any)['initiate'] = async (component, option: ComponentInitiateOption, onComponentCreated?: Function) => {
             app.component = component;
-            const componentInstance: Component = new component();
-            componentInstance['_app'] = app;
+            const componentInstance: Component = createComponent(component, app);
             if (onComponentCreated) {
                 onComponentCreated(componentInstance);
             }
