@@ -1,7 +1,7 @@
 {
   "name": "mahal-test-utils",
-  "version": "0.2.0",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Test plugin for mahal framework.",
   "main": "dist/taj-test.js",
   "types": "dist/ts/index.d.ts",
   "directories": {
