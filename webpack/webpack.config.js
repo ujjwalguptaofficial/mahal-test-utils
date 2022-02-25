@@ -2,17 +2,18 @@ const path = require('path');
 const SmartBannerPlugin = require('smart-banner-webpack-plugin');
 const banner = require('../build_helper/licence');
 const nodeExternals = require('webpack-node-externals');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = [{
-    name: "taj-test",
+    name: "mahal-test-utils",
     mode: process.env.NODE_ENV || 'development',
     target: "node",
     entry: "./src/index.ts",
     devtool: 'source-map',
     output: {
         path: path.join(__dirname, "./../dist"),
-        filename: "taj-test.js",
-        library: 'tajTest',
+        filename: "mahal-test-utils.js",
+        library: 'mahal-test-utils',
         libraryTarget: "commonjs2"
     },
     optimization: {
@@ -42,7 +43,12 @@ module.exports = [{
         extensions: ['.ts'] // '' is needed to find modules like "jquery"
     },
     plugins: [
-        new SmartBannerPlugin(banner)
+        new SmartBannerPlugin(banner),
+        new CopyPlugin({
+            patterns: [
+                { from: 'build_helper', to: '' },
+            ],
+        }),
     ],
     externals: [nodeExternals()]
 }];
