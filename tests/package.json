@@ -1,0 +1,17 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:lib": "node installer.js",
+    "test":"cd mochapack && npm run test",
+    "install:test":"npm run install:lib && npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mahal": "^1.0.0",
+    "mahal-html-compiler": "^1.0.0"
+  }
+}

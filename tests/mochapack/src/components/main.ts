@@ -1,11 +1,10 @@
 import { Children, Template, Reactive, Component } from "mahal";
-import { Getter } from "taj-store";
 import Student from "./student";
 import Counter from "./counter";
 
-@Template(`<Counter></Counter>`)
+@Template(`<Student/>`)
 @Children({
-    Counter
+    Counter, Student
 })
 export default class Main extends Component {
 
@@ -14,9 +13,6 @@ export default class Main extends Component {
 
     onClick() {
         this.flag = false
-        console.log("store", (this as any).$store);
     }
 
-    @Getter("name")
-    name;
 }

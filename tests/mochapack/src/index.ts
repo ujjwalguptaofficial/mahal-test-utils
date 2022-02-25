@@ -1,15 +1,14 @@
-import Mahal from "mahal";
-// import { TajStorePlugin } from "taj-store";
-// import { AppStore } from "./stores/index";
+import { Mahal } from "mahal";
 import Main from "./components/main";
 import MahalTest from "mahal-test-utils";
+import { createRenderer } from "mahal-html-compiler";
 
-export const app = new Mahal.App(Main, document.querySelector('#app') as HTMLElement);
-// app.addPlugin(TajStorePlugin, AppStore);
+export const app = new Mahal(Main, document.querySelector('#app') as HTMLElement);
+app.extend.renderer = createRenderer;
 
 if (process.env.NODE_ENV !== "test") {
     app.create();
 }
 else {
-    Mahal.App.extend.plugin(MahalTest, null);
+    app.extend.plugin(MahalTest, null);
 }

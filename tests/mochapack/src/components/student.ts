@@ -1,8 +1,6 @@
 import { Component, Template, Reactive } from "mahal";
-import { IStore, Getter, Mutation } from "taj-store";
 
 class BaseComponent extends Component {
-    $store;
 }
 
 @Template(`
@@ -11,9 +9,9 @@ class BaseComponent extends Component {
     <button on:click="changeName">ChangeName</button>
     <button on:click="()=>{flag=false}">Hide Name</button>
     <table>
-      <tr #for(student in students)>
+      <tr :for(student in students)>
        <td>{{student.name}}</td>
-       <td on:click="addStudent"><button>AddStudent</button></td>
+       <td on:click="addStudent"><button>Add Student</button></td>
       </tr>
     </table>
  
@@ -21,15 +19,12 @@ class BaseComponent extends Component {
 `)
 export default class extends BaseComponent {
 
+    @Reactive
+    name = 'ujjwal';
+
     constructor() {
         super();
-        this.on("rendered", () => {
-            console.log("store", this.$store);
-        })
     }
-
-    // @Getter("students")
-    // students
 
     @Reactive
     students = [{
@@ -42,25 +37,11 @@ export default class extends BaseComponent {
     addStudent() {
         this.students.push({
             name: 'ujjwal1'
-        })
-        this.students.splice(1, 1, { name: 'ujjwalsss' });
-        console.log("students", this.students)
+        });
     }
-
-    // addStudent() {
-    //     this.$store.commit("addStudent", {
-    //         name: 'ujjwal1'
-    //     })
-    // }
 
     changeName() {
-        this.changeNameInStore("ujjwal kr gupta");
+        this.name = "ujjwal kr gupta";
     }
-
-    @Mutation("changeName")
-    changeNameInStore;
-
-    @Getter("name")
-    name;
 }
 

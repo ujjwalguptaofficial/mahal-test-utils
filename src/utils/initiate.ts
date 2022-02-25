@@ -1,9 +1,15 @@
 import { ComponentInitiateOption } from "../interfaces";
+import { setInputValue } from "./set_input_value";
 import { Mahal, createComponent, Component, initComponent, executeRender } from "mahal";
+import { createRenderer } from "mahal-html-compiler";
 
-export async function initiate(component, option: ComponentInitiateOption, onComponentCreated?: Function) {
-    let app: Mahal = this || new Mahal(component, '#app');
-    app.component = component;
+export async function initiate<T>(component: any, option?: ComponentInitiateOption, onComponentCreated?: Function) {
+    let app: Mahal = this || (() => {
+        const newApp = new Mahal(component as any, '#app');
+        newApp.extend.renderer = createRenderer;
+        return newApp;
+    })();
+    app.component = component as any;
     const componentInstance: Component = createComponent(component, app);
     if (onComponentCreated) {
         onComponentCreated(componentInstance);
@@ -38,10 +44,9 @@ export async function initiate(component, option: ComponentInitiateOption, onCom
             return el;
         }
         (el as any).setValue = function (value) {
-            this.value = value;
-            this.dispatchEvent(new window.Event("input"))
+            setInputValue(this, value);
         }
         return el;
     }
-    return componentInstance;
+    return componentInstance as any as T;
 }

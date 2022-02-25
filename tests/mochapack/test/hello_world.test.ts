@@ -2,23 +2,24 @@ import HelloWorld from "../src/components/hello_world";
 import { app } from "../src/index";
 import { expect } from "chai";
 import sinon from "sinon";
+import { mount } from "mahal-test-utils";
 
 describe('HelloWorld', function () {
 
-    let component;
+    let component: HelloWorld;
 
-    before(function () {
-        component = (app as any).$initiate(HelloWorld);
+    before(async () => {
+        component = await mount<HelloWorld>(HelloWorld);
     });
 
     it('inner html should equal ujjwal gupta', function () {
-        expect(component.$html).equal("ujjwal gupta");
+        expect(component.element.innerHTML).equal("ujjwal gupta");
     });
 
     it('click', function () {
         let sandboxInstance = sinon.createSandbox();
         sandboxInstance.stub(window, "alert");
-        component.click();
+        component.element.click();
         sandboxInstance.assert.calledOnceWithExactly(window.alert as any, "Hello World");
         sandboxInstance.restore();
     });

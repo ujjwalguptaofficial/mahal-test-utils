@@ -1,13 +1,14 @@
 import Counter from "../src/components/counter";
 import { app } from "../src/index";
 import { expect } from "chai";
+import { initiate } from "mahal-test-utils";
 
 describe('Counter', function () {
 
-    let component;
+    let component: Counter;
 
-    before(function () {
-        component = (app as any).$initiate(Counter);
+    before(async function () {
+        component = await initiate(Counter);
     });
 
     it('check initial value of counter', function () {
@@ -16,12 +17,13 @@ describe('Counter', function () {
         expect(component.find('#counter').innerHTML).equal('0');
     });
 
-    it('increment 5 times', function () {
+    it('increment 5 times', async function () {
         console.log("element", component.element);
         const btn = component.find("#btnIncrement");
         for (let i = 0; i < 5; i++) {
             btn.click();
         }
+        await component.waitFor('update');
         expect(component.counter).equal(5);
     });
 });
