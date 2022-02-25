@@ -19,7 +19,7 @@ describe('Counter', function () {
 
     it('increment 5 times', async function () {
         console.log("element", component.element);
-        const btn = component.find("#btnIncrement");
+        const btn = component.find("#btnIncrement") as HTMLElement;
         for (let i = 0; i < 5; i++) {
             btn.click();
         }
