@@ -15,7 +15,8 @@
     "build:test": "npm run build:pack && npm run test",
     "webpack:dev": "webpack --config webpack/webpack.config.js",
     "webpack:prod": "webpack --config webpack/webpack.prod.config.js",
-    "build:ci": "npm run build:test"
+    "build:ci": "npm run build:test",
+    "deploy": "npm run build:ci"
   },
   "dependencies": {
     "mahal-html-compiler": "^1.0.0"
