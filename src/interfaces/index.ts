@@ -1,4 +1,4 @@
-export interface ComponentInitiateOption {
+export interface IComponentInitiateOption {
     props: {
 
     }

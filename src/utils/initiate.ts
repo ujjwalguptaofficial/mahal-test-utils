@@ -1,14 +1,15 @@
-import { ComponentInitiateOption } from "../interfaces";
+import { IComponentInitiateOption } from "../interfaces";
 import { setInputValue } from "./set_input_value";
 import { Mahal, createComponent, Component, initComponent, executeRender } from "mahal";
 import { createRenderer } from "mahal-html-compiler";
 
-export async function initiate<T>(component: any, option?: ComponentInitiateOption, onComponentCreated?: Function) {
+export async function initiate<T extends Component>(component: any, option?: IComponentInitiateOption, onComponentCreated?: Function) {
     let app: Mahal = this || (() => {
         const newApp = new Mahal(component as any, '#app');
         newApp.extend.renderer = createRenderer;
         return newApp;
     })();
+    document.querySelector
     app.component = component as any;
     const componentInstance: Component = createComponent(component, app);
     if (onComponentCreated) {

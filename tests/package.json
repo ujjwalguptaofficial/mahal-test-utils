@@ -15,10 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mahal": "^1.0.0",
-    "mahal-html-compiler": "^1.0.0",
     "jquery": "^3.4.0",
     "jsdom": "^19.0.0",
+    "mahal": "^1.0.1",
+    "mahal-html-compiler": "^1.0.0",
     "mochapack": "^2.0.3",
     "sinon": "^9.0.3"
   },
