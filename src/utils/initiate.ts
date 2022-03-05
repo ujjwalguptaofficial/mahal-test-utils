@@ -9,7 +9,6 @@ export async function initiate<T extends Component>(component: any, option?: ICo
         newApp.extend.renderer = createRenderer;
         return newApp;
     })();
-    document.querySelector
     app.component = component as any;
     const componentInstance: Component = createComponent(component, app);
     if (onComponentCreated) {
@@ -29,11 +28,6 @@ export async function initiate<T extends Component>(component: any, option?: ICo
         }
     }
     initComponent.call(componentInstance, componentInstance, componentInitOption);
-
-    // (componentInstance.element as any).setValue = function (value) {
-    //     this.value = value;
-    //     this.dispatchEvent(new Event("input"))
-    // }.bind(componentInstance.element);
     const el = await executeRender(componentInstance);
     app.element.appendChild(
         el
