@@ -1,6 +1,5 @@
 import Student from "../src/components/student";
 import { expect } from "chai";
-import sinon from "sinon";
 import { mount, setInputValue } from "mahal-test-utils";
 
 describe('Student', function () {
