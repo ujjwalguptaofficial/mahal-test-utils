@@ -3,6 +3,7 @@ import { app } from "../src/index";
 import { expect } from "chai";
 import sinon from "sinon";
 import { mount } from "mahal-test-utils";
+import { nextTick } from "mahal";
 
 describe('HelloWorld', function () {
 
@@ -16,10 +17,11 @@ describe('HelloWorld', function () {
         expect(component.element.innerHTML).equal("ujjwal gupta");
     });
 
-    it('click', function () {
+    it('click', async function () {
         let sandboxInstance = sinon.createSandbox();
         sandboxInstance.stub(window, "alert");
         component.element.click();
+        await nextTick();
         sandboxInstance.assert.calledOnceWithExactly(window.alert as any, "Hello World");
         sandboxInstance.restore();
     });

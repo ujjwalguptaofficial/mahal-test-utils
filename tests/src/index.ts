@@ -4,8 +4,9 @@ import MahalTest from "mahal-test-utils";
 import { createRenderer } from "mahal-html-compiler";
 
 export const app = new Mahal(Main, document.querySelector('#app') as HTMLElement);
-app.extend.renderer = createRenderer;
-
+app.extend.formatter('upper', (value) => {
+    return value.toUpperCase();
+})
 if (process.env.NODE_ENV !== "test") {
     app.create();
 }
