@@ -6,7 +6,7 @@ import { createRenderer } from "mahal-html-compiler";
 export async function initiate<T extends Component>(component: any, option?: IComponentInitiateOption, onComponentCreated?: Function) {
     let app: Mahal = this || (() => {
         const newApp = new Mahal(component as any, '#app');
-        newApp.extend.renderer = createRenderer;
+        newApp.extend.renderer = (Mahal as any).createRenderer || createRenderer;
         return newApp;
     })();
     app.component = component as any;
@@ -28,7 +28,7 @@ export async function initiate<T extends Component>(component: any, option?: ICo
         }
     }
     initComponent.call(componentInstance, componentInstance, componentInitOption);
-    const el = await executeRender(componentInstance);
+    const el = executeRender(componentInstance);
     app.element.appendChild(
         el
     );
