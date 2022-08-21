@@ -2,7 +2,7 @@ import HelloWorld from "../src/components/hello_world";
 import { app } from "../src/index";
 import { expect } from "chai";
 import sinon from "sinon";
-import { mount } from "mahal-test-utils";
+import { mount } from "@mahaljs/test-utils";
 import { nextTick } from "mahal";
 
 describe('HelloWorld', function () {

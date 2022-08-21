@@ -6,7 +6,7 @@ Official library for testing [mahal](https://github.com/ujjwalguptaofficial/maha
 # Installation
 
 ```
-npm i mahal-test-utils
+npm i @mahaljs/test-utils
 ```
 
 # Docs
