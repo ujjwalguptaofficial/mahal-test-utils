@@ -1,6 +1,8 @@
-import { Children, Template, Reactive, Component } from "mahal";
+import { Children, Reactive, Component } from "mahal";
 import Student from "./student";
 import Counter from "./counter";
+import { Template } from "@mahaljs/util";
+
 
 @Template(`<Student/>`)
 @Children({

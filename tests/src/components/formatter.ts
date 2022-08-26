@@ -1,4 +1,6 @@
-import { Component, Template, Reactive } from "mahal";
+import { Component, Reactive } from "mahal";
+import { Template } from "@mahaljs/util";
+
 
 @Template(`<div>
     <div id="counter">{{name | upper}}</div>
