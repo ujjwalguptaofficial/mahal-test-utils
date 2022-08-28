@@ -1,4 +1,6 @@
-[![npm version](https://badge.fury.io/js/mahal-test-utils.svg)](https://badge.fury.io/js/mahal-test-utils) [![CI](https://github.com/ujjwalguptaofficial/mahal-test-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/ujjwalguptaofficial/mahal-test-utils/actions/workflows/ci.yml) [![GitHub version](https://badge.fury.io/gh/ujjwalguptaofficial%2Fmahal-test-utils.svg)](https://badge.fury.io/gh/ujjwalguptaofficial%2Fmahal-test-utils)
+[![npm version](https://badge.fury.io/js/@mahaljs%2Ftest-utils.svg)](https://badge.fury.io/js/@mahaljs%2Ftest-utils)
+[![CI](https://github.com/ujjwalguptaofficial/mahal-test-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/ujjwalguptaofficial/mahal-test-utils/actions/workflows/ci.yml) 
+[![GitHub version](https://badge.fury.io/gh/ujjwalguptaofficial%2Fmahal-test-utils.svg)](https://badge.fury.io/gh/ujjwalguptaofficial%2Fmahal-test-utils)
 # mahal-test-utils
 
 Official library for testing [mahal](https://github.com/ujjwalguptaofficial/mahal) application
