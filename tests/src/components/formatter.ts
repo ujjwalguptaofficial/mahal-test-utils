@@ -1,8 +1,8 @@
 import { Component, Reactive } from "mahal";
-import { Template } from "@mahaljs/util";
+import { template } from "@mahaljs/util";
 
 
-@Template(`<div>
+@template(`<div>
     <div id="counter">{{name | upper}}</div>
 </div>`)
 export default class extends Component {

@@ -1,7 +1,7 @@
 import { Component, Reactive } from "mahal";
-import { Template } from "@mahaljs/util";
+import { template } from "@mahaljs/util";
 
-@Template(`<div>
+@template(`<div>
     <div id="counter">{{counter}}</div>
     <button id="btnIncrement" on:click='increment'>Increment</button>
     <button id="btnDecrement" on:click='decrement'>Decrement</button>
