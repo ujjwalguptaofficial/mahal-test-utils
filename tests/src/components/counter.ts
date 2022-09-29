@@ -1,4 +1,4 @@
-import { Component, Reactive } from "mahal";
+import { Component, reactive } from "mahal";
 import { template } from "@mahaljs/util";
 
 @template(`<div>
@@ -7,7 +7,7 @@ import { template } from "@mahaljs/util";
     <button id="btnDecrement" on:click='decrement'>Decrement</button>
 </div>`)
 export default class extends Component {
-    @Reactive
+    @reactive
     counter = 0;
 
     increment() {

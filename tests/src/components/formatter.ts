@@ -1,4 +1,4 @@
-import { Component, Reactive } from "mahal";
+import { Component, reactive } from "mahal";
 import { template } from "@mahaljs/util";
 
 
@@ -6,7 +6,7 @@ import { template } from "@mahaljs/util";
     <div id="counter">{{name | upper}}</div>
 </div>`)
 export default class extends Component {
-    @Reactive
+    @reactive
     name = 'ujjwal';
 
 }
