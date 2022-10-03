@@ -6,7 +6,9 @@ import { createRenderer } from "@mahaljs/html-compiler";
 export async function initiate<T extends Component>(component: any, option?: IComponentInitiateOption, onComponentCreated?: Function) {
     let app: Mahal = this || (() => {
         const newApp = new Mahal(component as any, '#app');
-        newApp.extend.renderer = (Mahal as any).createRenderer || createRenderer;
+        newApp.extend.setRenderer(
+            createRenderer
+        );
         return newApp;
     })();
     app.component = component as any;

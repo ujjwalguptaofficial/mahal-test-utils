@@ -1,6 +1,6 @@
 {
   "name": "@mahaljs/test-utils",
-  "version": "1.5.1",
+  "version": "1.6.1",
   "description": "Official test plugin for mahal framework.",
   "main": "dist/npm.export.js",
   "types": "dist/ts/index.d.ts",
@@ -22,20 +22,20 @@
     "build:ci": "npm run build:test",
     "clean": "del dist",
     "deploy": "npm run clean && npm run build:ci",
-    "install:latest": "npm i mahal@latest && npm i @mahaljs/html-compiler@latest",
+    "install:latest": "npm i mahal@latest && npm i @mahaljs/html-compiler@latest && npm i @mahaljs/util@latest",
     "prepublishOnly": "npm run install:latest && npm run deploy"
   },
   "dependencies": {
-    "@mahaljs/html-compiler": "^1.5.1",
-    "@mahaljs/util": "^1.5.1"
+    "@mahaljs/html-compiler": "^1.6.1",
+    "@mahaljs/util": "^1.6.1"
   },
   "peerDependencies": {
-    "mahal": "^1.5.1"
+    "mahal": "^1.6.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.1.1",
     "del-cli": "^4.0.1",
-    "mahal": "^1.5.0",
+    "mahal": "^1.6.0",
     "smart-banner-webpack-plugin": "^3.0.1",
     "ts-loader": "^8.0.3",
     "typescript": "^4.0.2",
