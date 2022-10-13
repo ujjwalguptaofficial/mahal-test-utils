@@ -1,7 +1,7 @@
 import Formatter from "../src/components/formatter";
 import { app } from "../src/index";
 import { expect } from "chai";
-import { initiate,getMount } from "@mahaljs/test-utils";
+import { initiate, getMount } from "@mahaljs/test-utils";
 
 describe('Formatter', function () {
 
